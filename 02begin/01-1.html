@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>空气净化器</h1>
+        <h2>PM20的值：{{pm25}}</h2>
+        <h2>{{pm25<100?'img/1.png':
+          pm25<200?'img/2.png':
+          pm25<300?'img/3.png':
+                'img/4.png'}}</h2>
+    <img :src="pm25<100? 'img/1.png':
+               pm25<200? 'img/2.png':
+               pm25<300? 'img/3.png':
+                        'img/4.png'">
+    </div>
+</body>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            pm25:190
+        }
+    });
+setInterval(function(){
+
+   vm.pm25=parseInt(Math.random()*400);
+
+},1000)
+
+</script>
+</html>
