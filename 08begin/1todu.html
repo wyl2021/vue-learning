@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+ <todo></todo>
+</div>
+  
+
+
+<script>
+var todoAdd={
+    template:`
+    <div>
+    <input type="text" v-model="item"/>
+        <button @click="add_item">+</button>
+    </div>
+`,
+data(){
+    return{
+        item:"",
+    }
+},
+methods:{
+    add_item(){
+        console.log("增加事项，待实现...")
+    }
+}
+}
+var todoList={
+template:`<ul>
+<todo-item  v-for="(task,i) of tasks"></todo-item>
+
+</ul>`,
+data(){
+    return {tasks:["吃饭","睡觉","打豆豆"],}
+},
+
+methods:{
+
+},
+components:{
+    todoItem
+},
+}
+
+
+
+//把数据放在todo组件   父组件todo
+Vue.component("todo",{
+    template:`
+    <div>
+    <h1>待办事项列表</h1>
+    <todo-add></todo-add>
+    <todo-list></todo-list> 
+    </div>
+`,
+data(){
+    return{
+        tasks:["吃饭","睡觉","打豆豆"],
+    }
+},
+components:{
+    todoAdd,todoList
+}
+
+
+})
+
+
+
+var vm=new Vue({
+  el:"#app",
+  data:{
+    
+  }
+})
+</script>
+</body>
+</html>
